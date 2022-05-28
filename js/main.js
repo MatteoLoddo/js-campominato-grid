@@ -2,28 +2,57 @@
 // const numberUserColumn = parseInt(prompt("Inserisci il numero di colonne della tua griglia"))
 const containerGriglia = document.querySelector(".cont-griglia");
 const difficolta = document.querySelector('[name="difficolta"]')
+const buttonGenera = document.getElementById("myButton")
 console.log(containerGriglia);
-// funzione che crea tante celle quanto il valore richiamato  al posto degli argomenti
-function calcolaGriglia (colonne,righe){
-// calcolo degli argomenti per calcolare il  numero di  celle 
-    const numeroCelle = colonne * righe;
 
-    return numeroCelle
+
+
+// funzione che crea tante celle quanto il valore richiamato  al posto degli argomenti
+function calcolaCelle (colonne,  righe){
+// calcolo degli argomenti per calcolare il  numero di  celle 
+    const calcolo = colonne * righe;
+
+    return calcolo
 }
 
-// salvo il risultato della mia funzione in una variabile
-const numeroCelle = calcolaGriglia(10,10)
+let risultato =
+
+buttonGenera.addEventListener("click" , function(){
+
+    // controllo selettore difficolta
+    const valoreDiff = difficolta.value
+    
+    // creare  condizioni in base alla difficolta
+    if(valoreDiff === "diff1"){
+        let risultato1 = calcolaCelle(10,10)
+        console.log(risultato1);
+        risultato = risultato1
+        
+
+    }else if (valoreDiff === "diff2"){
+        let risultato2 = calcolaCelle(9,9)
+
+        risultato = risultato2
+
+    }else if(valoreDiff ===  "diff3"){
+
+        let risultato3 = calcolaCelle(7,7)
+        risultato = risultato3
+    }
+
+    console.log(risultato);
+    
+    creaGriglia(risultato)
+    
+})
 
 
 
-
-
-// 
 
 // creo una funzione per creare tanti div quante le celle calcolate in precedenza
-function creaGriglia (quantitaCelle){
+function creaGriglia (risultato){
     
-    for(let i=1; i <=quantitaCelle; i++){
+    for(let i=1; i <=risultato; i++){
         // salvo il numero incrementale per stamparlo
         let text = i
         console.log(text);
@@ -49,7 +78,16 @@ function creaGriglia (quantitaCelle){
         })
 
         // do una dimensione con stili inline al mio container per avere sempre la griglia delle dimensioni desiderate  calcolando la larghezza di ogni cella(richiamando la variabile css a cui ho  dato  la mia dimensione statica) per il numero delle colonne da ottenere
-        containerGriglia.style.width = `calc(var(--cella-size) * 10`
+        if(risultato === 100){
+            containerGriglia.style.width = `calc(var(--cella-size) * 10`
+        }else if(risultato === 81){
+            containerGriglia.style.width = `calc(var(--cella-size) * 9`
+        }else if( risultato === 49){
+            containerGriglia.style.width = `calc(var(--cella-size) * 7`
+
+        }
+
+
         // a fine di ogni ciclo appendo la mia cella nel mio container
         containerGriglia.append(cella)
     }
@@ -57,4 +95,39 @@ function creaGriglia (quantitaCelle){
 
 
 
-creaGriglia(numeroCelle)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
